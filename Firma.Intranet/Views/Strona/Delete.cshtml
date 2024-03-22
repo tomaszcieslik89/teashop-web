@@ -1,0 +1,60 @@
+﻿@model Firma.Data.Models.CMS.CMSStrona
+
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Usuń stronę</h1>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.LinkTytul)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LinkTytul)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Tytul)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Tytul)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Tresc)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Tresc)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Pozycja)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Pozycja)
+        </dd>
+    </dl>
+    <div class="col-md-12 text-center">
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="IdStrony" />
+        </form>
+    </div>
+</div>
+
+
+
+<a asp-action="Index" class="btn btn-outline-success">Powrót</a>
+<button class="btn btn-outline-success" onclick="document.getElementById('id01').style.display='block'">Usuń</button>
+
+<div id="id01" class="modal">
+    <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+    <form class="modal-content" asp-action="Delete">
+        <div class="container">
+            <h4 class="text-center">Czy na pewno chesz usunąć tą stronę?</h4>
+            <div class="col-md-12 text-center">
+                <input type="submit" value="Usuń" class="btn btn-outline-success" />
+            </div>
+        </div>
+    </form>
+</div>
+

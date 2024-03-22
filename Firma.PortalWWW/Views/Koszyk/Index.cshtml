@@ -1,0 +1,194 @@
+﻿@model Firma.PortalWWW.Models.Sklep.DaneDoKoszyka
+@{
+    ViewData["Title"] = "Koszyk";
+    Layout = "~/Views/Shared/_KoszykLayout.cshtml";
+}
+<div style="text-align: center;">
+    <h4> <text style="font-weight: bold; color: black; ">Moje zakupy</text> </h4>
+</div>
+<div>
+    <table class="table table-hover">
+        <thead>
+            <tr class="p-3-mb-2 text-white">
+                <th>Nazwa produktu</th>
+                <th>Cena (PLN)</th>
+                <th>Ilość (szt)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ElementyKoszyka)
+            {
+                <tr class="kolor-text">
+                    <td><a asp-action="Szczegoly" asp-route-id="@item.IdTowaru">@item.SklepTowarIdTowaruNavigation.Nazwa</a> </td>
+                    <td>@item.SklepTowarIdTowaruNavigation.CenaBrutto.ToString()</td>
+                    <td>@item.Ilosc</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div>
+
+        <h5 class="header black-text">@Model.Razem.ToString("c")</h5> 
+        <form id="myform" action="Koszyk/KupTeraz" method="post" style="text-align: right;">
+            <br />
+            <div style="text-align: center;">
+                <h4><text style="font-weight: bold; color: black; ">Uzupełnij formularz</text></h4>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="text" id="imie" name="imie" placeholder="Podaj imię" class="form-control">
+                <span id="imieWarning" style="color: red; display: none;">Pole imię jest wymagane.</span>
+            </div>
+            <div class="form-group">
+                <input type="text" id="nazwisko" name="nazwisko" placeholder="Podaj nazwisko" class="form-control">
+                <span id="nazwiskoWarning" style="color: red; display: none;">Pole nazwisko jest wymagane.</span>
+            </div>
+            <div class="form-group">
+                <input type="text" id="email" name="email" placeholder="Podaj e-mail" class="form-control">
+                <span id="emailWarning" style="color: red; display: none;">Pole e-mail jest wymagane.</span>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="text" id="NIP" name="NIP" placeholder="Podaj NIP" class="form-control">
+                <span id="nipWarning" style="color: red; display: none;">Pole NIP jest wymagane.</span>
+            </div>
+            <div class="form-group">
+                <input type="text" id="NazwaFirmy" name="NazwaFirmy" placeholder="Podaj nazwę firmy" class="form-control">
+                <span id="nazwaFirmyWarning" style="color: red; display: none;">Pole nazwa firmy jest wymagane.</span>
+            </div>
+            <br />
+            <select id="typ" name="typ" style="display:block;" onchange="toggleFields()">
+                <option value="1">  Paragon </option>
+                <option value="2">  Faktura </option>
+            </select>
+            <div class="form-group" style="float: right; margin: 20px 0 0 0;">
+                <input type="submit" id="btn1" value="Wyślij" class="btn btn-primary" onclick="return validateForm();">
+            </div>
+
+            <div id="koszykPustyWarning" style="color: red; display: none; text-align: center; font-size: 20px;">
+                <br />
+                Koszyk jest pusty. Nie możesz złożyć zamówienia.
+            </div>
+
+
+            <br /> <br /><br /><br />
+        </form>
+    </div>
+
+    <script>
+        
+        window.onload = function () {
+            toggleFields(); 
+        }
+        function toggleFields() {
+            var typField = document.getElementById("typ");
+            var nipField = document.getElementById("NIP");
+            var nazwaFirmyField = document.getElementById("NazwaFirmy");
+
+            if (typField.value === "2") {
+                nipField.required = true;
+                nazwaFirmyField.required = true;
+                nipField.style.pointerEvents = "auto"; 
+                nazwaFirmyField.style.pointerEvents = "auto"; 
+            } else {
+                nipField.required = false;
+                nazwaFirmyField.required = false;
+                nipField.style.pointerEvents = "none"; 
+                nazwaFirmyField.style.pointerEvents = "none"; 
+            }
+        }
+        function validateForm() {
+            var imieField = document.getElementById("imie");
+            var imieWarning = document.getElementById("imieWarning");
+            var nazwiskoField = document.getElementById("nazwisko");
+            var nazwiskoWarning = document.getElementById("nazwiskoWarning");
+            var nipField = document.getElementById("NIP");
+            var nipWarning = document.getElementById("nipWarning");
+            var nazwaFirmyField = document.getElementById("NazwaFirmy");
+            var nazwaFirmyWarning = document.getElementById("nazwaFirmyWarning");
+            var emailField = document.getElementById("email");
+            var emailWarning = document.getElementById("emailWarning");
+            var elementsInCart = document.querySelectorAll(".kolor-text");
+            var koszykPusty = elementsInCart.length === 0;
+            var koszykPustyWarning = document.getElementById("koszykPustyWarning");
+
+            if (koszykPusty) {
+                koszykPustyWarning.style.display = "block";
+                return false;
+            } else {
+                koszykPustyWarning.style.display = "none";
+            }
+            var isValid = true;
+            if (imieField.value === "") {
+                imieWarning.style.display = "block";
+                isValid = false;
+            } else {
+                imieWarning.style.display = "none";
+            }
+            if (nazwiskoField.value === "") {
+                nazwiskoWarning.style.display = "block";
+                isValid = false;
+            } else {
+                nazwiskoWarning.style.display = "none";
+            }
+
+            if (nipField.required && nipField.value === "") {
+                nipWarning.style.display = "block";
+                isValid = false;
+            } else {
+                nipWarning.style.display = "none";
+            }
+
+            if (nazwaFirmyField.required && nazwaFirmyField.value === "") {
+                nazwaFirmyWarning.style.display = "block";
+                isValid = false;
+            } else {
+                nazwaFirmyWarning.style.display = "none";
+            }
+
+            if (emailField.value === "") {
+                emailWarning.style.display = "block";
+                isValid = false;
+            } else {
+                emailWarning.style.display = "none";
+            }
+            return isValid;
+        }
+    </script>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#btn1').submit(function () {
+            $.ajax({
+                url: 'Koszyk/KupTeraz',
+                type: 'POST',
+                timeout: '12000', (optional 12 seconds) /
+                datatype: 'text',
+                data: {
+                imie: myform.imie.value,
+                nazwisko: myform.nazwisko.value,
+                NIP: myform.NIP.value,
+                NazwaFirmy: myform.NazwaFirmy.value,
+                email: myform.email.value,
+                typ: myform.typ.value,
+            }
+                });
+    });
+          });
+
+</script>
+
+<style>
+    .p-3-mb-2 {
+        background-color: teal;
+    }
+
+    .kolor-text {
+        color: black;
+    }
+
+    .waves-effect:hover {
+        color: black;
+    }
+</style>

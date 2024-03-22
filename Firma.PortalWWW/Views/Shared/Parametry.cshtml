@@ -1,0 +1,10 @@
+﻿@using Firma.Data.Models.CMS;
+@model IEnumerable<CMSParametr>
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col l6 s12">
+           <p class="text-lighten-4">@item.Nazwa @item.Opis </p>     
+        </div>
+    }
+</div>

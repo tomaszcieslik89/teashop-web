@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Firma.Data.Models.CMS.CMSParametr>
+@{
+    ViewData["Title"] = "Parametry";
+}
+<h3>Parametry</h3>
+<p>
+    <a asp-action="Create" class="btn btn-outline-success">Dodaj</a>
+</p>
+<table class="table table-hover">
+    <thead>
+        <tr class="table-success">
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Kod)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Nazwa)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Wartosc)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Opis)
+            </th>
+            <th scope="col">
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Kod)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nazwa)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Wartosc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Opis)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.IdParametru" class="btn btn-outline-success">Edytuj</a>
+                    <a asp-action="Delete" asp-route-id="@item.IdParametru" class="btn btn-outline-success">Usuń</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

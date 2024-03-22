@@ -1,0 +1,136 @@
+﻿@using Firma.Data.Models.CMS
+@model CMSStrona
+@{
+    ViewData["Title"] = "Kontakt";
+}
+
+<div class="parallax-container">
+    <div class="parallax"><img src="~/Pictures/SzklankaHerbata.jpg" alt="Background"></div>
+</div>
+<br />
+<div class="containerSrodek">
+    <h2>Nasi pracownicy</h2>
+    <div class="row">
+        <div class="col s12 m4">
+            <div class="card">
+                <div class="card-image">
+                    <img src="~/Pictures/Konsultant1.jpeg" alt="Person 1">
+                </div>
+                <div class="card-content">
+                    <span class="card-title">Cezary Cieślik</span>
+                    <p>Sprzedaż, tel: +48 123 456 789</p>
+                </div>
+            </div>
+        </div>
+        <div class="col s12 m4">
+            <div class="card">
+                <div class="card-image">
+                    <img src="~/Pictures/Konsultant2.jpeg" alt="Person 2">
+                </div>
+                <div class="card-content">
+                    <span class="card-title">Sara Cieślik </span>
+                    <p>Marketing, reklamacje tel: +48 789 456 123</p>
+                </div>
+            </div>
+        </div>
+        <div class="col s12 m4">
+            <div class="card">
+                <div class="card-image">
+                    <img src="~/Pictures/Konsultant3.jpg" alt="Person 3">
+                </div>
+                <div class="card-content">
+                    <span class="card-title">Beata Cieślik </span>
+                    <p>Ksiegowość, tel: +48 456 789 123 </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-margin">
+        <div class="row justify-content-center">
+            <div class="col-md-4 text-center">
+                <h1>
+                    <a class="red-text" href="https://www.youtube.com/">
+                        <i class="fab fa-youtube"></i> <strong>YouTube</strong>
+                    </a>
+                </h1>
+            </div>
+            <div class="col-md-4 text-center">
+                <h1>
+                    <a class="blue-text" href="https://www.facebook.com/">
+                        <i class="fab fa-facebook"></i> <strong>Facebook</strong>
+                    </a>
+                </h1>
+            </div>
+            <div class="col-md-4 text-center">
+                <h1>
+                    <a class="purple-text" href="https://www.instagram.com/">
+                        <i class="fab fa-instagram"></i> <strong>Instagram</strong>
+                    </a>
+                </h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h4 class="text-center mt-4">Lokalizacja</h4>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d41011.333636175346!2d20.935706809240468!3d50.02619159906339!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473d834352c3ffc7%3A0xcf1a70dff872f61e!2s33-100%20Tarn%C3%B3w!5e0!3m2!1spl!2spl!4v1690020465361!5m2!1spl!2spl"
+                width="700" height="200" style="border:0;" allowfullscreen=" " loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <br />
+    <footer class="page-footer teal">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m6">
+                    <h5>Informacje kontaktowe</h5>
+                    <p>Telefon: +48 123 456 890</p>
+                    <p>Email: kontakt@example.com.pl</p>
+                    <p>NIP: 123 456 78 79</p>
+                </div>
+                <div class="col s12 m6">
+                    <h5>Adres</h5>
+                    <p>Ul.: Przykładowa 12</p>
+                    <p>Kod pocztowy: 33-100 </p>
+                    <p>Miejscowość: Tarnów</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<style>
+    .page-footer {
+        background-color: teal;
+        color: white;
+    }
+
+    .containerSrodek {
+        text-align: center;
+    }
+
+    container-margin {
+        margin-bottom: 20px;
+    }
+
+    footer.page-footer h5 {
+        margin-bottom: 1px;
+        margin-top: 0px;
+    }
+
+    footer.page-footer p {
+        margin: 1px 0;
+    }
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('.parallax');
+        var instances = M.Parallax.init(elems);
+    });
+</script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="~/lib/materialize/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+<link rel="stylesheet" href="~/Firma.PortalWWW.styles.css" asp-append-version="true" />

@@ -1,0 +1,85 @@
+﻿@model IEnumerable<Firma.PortalWWW.Models.Sklep.TowaryModel>
+
+@{
+    ViewData["Title"] = "Sklep";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .responsive {
+            width: 100%;
+            height: 300px;
+        }
+    </style>
+</head>
+
+<h1 class="header center teal-text">Sklep</h1>
+<div class="row center">
+</div>
+<div class="main">
+    <center>
+        @if (TempData["KupTeraz"] != null)
+        {
+            <div class="alert alert-success w-75" style="margin-left:25px;">
+                @TempData["KupTeraz"]
+            </div>
+        }
+    </center>
+    <div class="row">
+
+        @foreach (var item in Model)
+        {
+            <div class="column Herbata czarna">
+                <div class="content">
+                    <a asp-controller="Koszyk" asp-action="DodajDoKoszyka" asp-route-id="@item.Id" style="color: black;">
+                        <img class="responsive-img" src="~/Pictures/Wyprzedaz/over.png" class="responsive">
+                        <h4>@item.Nazwa</h4>
+                        <p>@item.Marka</p>
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+    <script>
+        filterSelection("all")
+        function filterSelection(c) {
+            var x, i;
+            x = document.getElementsByClassName("column");
+            if (c == "all") c = "";
+            for (i = 0; i < x.length; i++) {
+                RemoveClass(x[i], "show");
+                if (x[i].className.indexOf(c) > -1) AddClass(x[i], "show");
+            }
+        }
+        function AddClass(element, name) {
+            var i, arr1, arr2;
+            arr1 = element.className.split(" ");
+            arr2 = name.split(" ");
+            for (i = 0; i < arr2.length; i++) {
+                if (arr1.indexOf(arr2[i]) == -1) { element.className += " " + arr2[i]; }
+            }
+        }
+        function RemoveClass(element, name) {
+            var i, arr1, arr2;
+            arr1 = element.className.split(" ");
+            arr2 = name.split(" ");
+            for (i = 0; i < arr2.length; i++) { 
+                while (arr1.indexOf(arr2[i]) > -1) {
+                    arr1.splice(arr1.indexOf(arr2[i]), 1);
+                }
+            }
+            element.className = arr1.join(" ");
+        }
+        var btnContainer = document.getElementById("myBtnContainer");
+        var btns = btnContainer.getElementsByClassName("btn");
+        for (var i = 0; i < btns.length; i++) {
+            btns[i].addEventListener("click", function () {
+                var current = document.getElementsByClassName("active");
+                current[0].className = current[0].className.replace(" active", "");
+                this.className += " active";
+            });
+        }
+    </script>
+</html>

@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--materialdesigne-->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - TeaShop - sklep z herbatami</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="~/lib/materialize/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Firma.PortalWWW.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <nav class="teal" role="navigation">
+        <ul class="right hide-on-med-and-down">
+            <li>
+                <a asp-action="Sklep" asp-controller="Home">Powrót do sklepu<i class="material-icons left">arrow_back</i></a>
+            </li>
+        </ul>
+    </nav>
+    <div class="section no-pad-bot" id="index-banner">
+        <div class="container">
+            @RenderBody()
+        </div>
+    </div>
+    <footer class="page-footer teal">
+        <div class="container">
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                Made by Tomasz Cieślik
+            </div>
+        </div>
+    </footer>
+    <!--  Scripts-->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="js/materialize.js"></script>
+    <script src="js/init.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

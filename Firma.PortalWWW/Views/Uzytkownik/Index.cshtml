@@ -1,0 +1,66 @@
+﻿@model Firma.PortalWWW.Models.Koszyk.LogowanieModel;
+@{
+    //głowny widok koszyka
+    ViewData["Title"] = "Konto";
+    Layout = "~/Views/Shared/_UzytkownikLayout.cshtml";
+}
+<div>
+    <div class="dane"></div>
+    <center>
+        <h3>Witaj <b><span style="color: teal;">@Model.Login</span></b> jesteś zalogowany.</h3>
+        <br /> <br />
+        <h6><b>Zmiana hasła</b>:</h6>
+    </center>
+    <center>
+       @* formularz do funkcji zmien haslo w uzytkowniku*@
+        <form asp-action="ZmienHaslo" asp-controller="Uzytkownik">
+            <input type="hidden" asp-for="Login" value="@Model.Login" />
+
+            <div class="form-outline mb-4">
+                <input type="password" asp-for="Haslo" class="form-control" placeholder="Hasło" />
+            </div>
+
+            @if (@Model != null && @Model.Blad != null)
+            {
+                <h3 style="color: red;">@Model.Blad</h3>
+            }
+            <br />
+            <!--Zmien hasło-->
+            <button type="submit" class="btn btn-primary btn-block mb-4">Zmień hasło</button>
+
+
+            @if (TempData["ZmianaHasla"] != null)
+            {
+                <div class="alert alert-success w-75" style="margin-left:25px;">
+                    @TempData["ZmianaHasla"]
+                </div>
+            }
+        </form>
+
+        <form asp-action="UsunKonto" asp-controller="Uzytkownik">
+            <input type="hidden" asp-for="Login" value="@Model.Login" />
+            <!--Usuń konto-->
+            <button type="submit" class="btn btn-primary btn-block mb-4">Usuń konto</button>
+
+
+            @if (TempData["UsunKonto"] != null)
+            {
+                <div class="alert alert-success w-75" style="margin-left:25px;">
+                    @TempData["UsunKonto"]
+                </div>
+            }
+        </form>
+
+        @* Raporty PDF*@
+        <form method="post" asp-controller="Uzytkownik" asp-action="PDF">
+            <input type="hidden" asp-for="Login" value="@Model.Login" />
+            <input type="submit" class="btn btn-primary btn-block mb-4" value="Wygeneruj raport PDF" />
+        </form>
+
+        @* Raporty exel*@
+        <form method="post" asp-controller="Uzytkownik" asp-action="Excel">
+            <input type="hidden" asp-for="Login" value="@Model.Login" />
+            <input type="submit" class="btn btn-primary btn-block mb-4" value="Generuj raport Excel" />
+        </form>
+    </center>
+</div>

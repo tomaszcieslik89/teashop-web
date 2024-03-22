@@ -1,0 +1,52 @@
+﻿@using Firma.Data.Models.CMS;
+@model CMSStrona
+@{
+    ViewData["TeaShop"] = @Model.LinkTytul;
+}
+<br />
+<br />
+<div style="text-align: center; margin: 8px;">
+    <img src="/Pictures/logoLisc.png" alt="Logo" style="height: 80px;">
+    <br />
+    <span style="font-weight: bold; font-size: 30px; color: teal;">@Model.Tytul @Model.Tresc</span>
+</div>
+<br />
+<div class="Konto">
+    <center>
+        @if (TempData["UsunKonto"] != null)
+        {
+            <div class="alert alert-success w-75" style="margin-left:25px;">
+                @TempData["UsunKonto"]
+            </div>
+        }
+    </center>
+</div>
+</div>
+<div class="parallax-container1">
+</div>
+<div class="container">
+    @await Html.PartialAsync("Aktualnosci", (IEnumerable<CMSAktualnosc>)ViewBag.ModelAktualnosci)
+</div>
+@*  foto 2*@
+<div class="parallax-container2">
+</div>
+
+
+<br />
+<div class="container">
+    <h6 class="header center">@await Html.PartialAsync("Parametry", (IEnumerable<CMSParametr>)ViewBag.ModelParametry)</h6>
+</div>
+@*  foto 3*@
+<div class="parallax-container3">
+</div>
+
+<style>
+    footer.page-footer h5 {
+        margin-bottom: 1px;
+        margin-top: 0px;
+    }
+
+    footer.page-footer p {
+        margin: 1px 0;
+    }
+</style>

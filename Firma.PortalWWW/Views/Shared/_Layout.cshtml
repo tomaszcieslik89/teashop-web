@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]Herbaty z całego świata</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="~/lib/materialize/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Firma.PortalWWW.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+<body>
+    <nav class="teal" style="position: fixed; right: 0; z-index: 9999;" role="navigation">
+        <!-- Logo -->
+        <a href="/Home/Index">
+            <img src="/Pictures/logoLisc.png" alt="Logo" style="float: left; margin: 8px; height: 50px;">
+            <span style="font-weight: bold; font-size: 20px; color: white;">TeaShop</span>
+        </a>
+        <!-- Przełącznik trybu ciemnego -->
+        <input type="checkbox" id="dark-mode-toggle">
+        <label for="dark-mode-toggle"></label>
+        <ul class="right hide-on-med-and-down ">
+            <li>@Html.ActionLink("Strona główna", "Index", "Home")</li>
+            <li>@Html.ActionLink("Artykuły", "Artykuly", "Home")</li>
+            <li>@Html.ActionLink("Rodzaje herbat", "RodzajeHerbat", "Home")</li>
+            <li>@Html.ActionLink("Yerba mate", "YerbaMate", "Home")</li>
+            <li>@Html.ActionLink("Sklep", "Sklep", "Home")</li>
+            <li>@Html.ActionLink("Kontakt", "Kontakt", "Home")</li>
+            <li>@Html.ActionLink("Koszyk", "Index", "Koszyk")</li>
+            <li>@Html.ActionLink("Logowanie", "Logowanie", "Uzytkownik")</li>
+        </ul>
+    </nav>
+    <br />
+    <div class="section no-pad-bot" id="index-banner">
+        <div class="container">
+            @RenderBody()
+        </div>
+    </div>
+    <div class="container">
+    </div>
+    <footer class="page-footer teal">
+        <div class="container">
+        </div>
+        @*specjalnie na sztywno żeby kontrahent nie zmienił*@
+        <div class="footer-copyright">
+            <div class="container">
+                Made by Tomasz Cieślik &copy; 2023
+            </div>
+        </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="js/materialize.js"></script>
+    <script src="js/init.js"></script>
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+    <script>
+        const isDarkMode = localStorage.getItem('darkMode') === 'true';
+        document.documentElement.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
+        document.getElementById('dark-mode-toggle').checked = isDarkMode;
+        document.getElementById('dark-mode-toggle').addEventListener('change', function () {
+            const isDarkMode = this.checked;
+            localStorage.setItem('darkMode', isDarkMode ? 'true' : 'false');
+            document.documentElement.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>

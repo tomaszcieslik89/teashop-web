@@ -1,0 +1,41 @@
+﻿@using Firma.Data.Models.CMS
+@model IEnumerable<CMSStrona>
+
+@{
+    ViewData["Title"] = "Artykuły";
+}
+@*strona*@
+<h1 class="header center teal-text">Artykuły</h1>
+<ol style="list-style-position: inside;">
+    @foreach (var item in Model)
+    {
+        <li><a href="#@item.Tytul">@item.Tytul </a></li>
+    }
+</ol>
+@foreach (var item in Model)
+{
+      <h5 id="@item.Tytul"><br />@item.Tytul <br /><br /></h5>
+    <p>@item.Tresc</p>
+}
+<br />
+<br />
+<button type="button" class="btn btn-success scroll-up-btn" onclick="goToTop()">
+    Wróć na górę
+</button>
+<script>
+    function goToTop() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    window.onscroll = function () { scrollFunction(); };
+
+    function scrollFunction() {
+        const scrollUpBtn = document.querySelector(".scroll-up-btn");
+        if (document.body.scrollTop > 1200 || document.documentElement.scrollTop > 1200) {
+            scrollUpBtn.style.display = "block";
+        } else {
+            scrollUpBtn.style.display = "none";
+        }
+    }
+</script>
+

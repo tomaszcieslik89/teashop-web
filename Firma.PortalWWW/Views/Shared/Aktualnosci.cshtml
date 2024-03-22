@@ -1,0 +1,18 @@
+﻿@using Firma.Data.Models.CMS;
+@model IEnumerable<CMSAktualnosc>
+<div class="section">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col s12 m4">
+                <div class="icon-block">
+                    <h2 class="center teal-text"><i class="material-icons large">brightness_high</i></h2>
+                    <h5 class="center">@item.Tytul</h5>
+                    <p class="center light">@item.Tresc</p>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<br>
+<br>

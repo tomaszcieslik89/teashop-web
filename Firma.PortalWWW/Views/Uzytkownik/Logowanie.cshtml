@@ -1,0 +1,43 @@
+﻿@model Firma.PortalWWW.Models.Koszyk.LogowanieModel;
+@{
+    //głowny widok koszyka
+    ViewData["Title"] = "Logowanie";
+    Layout = "~/Views/Shared/_KoszykLayout.cshtml";
+}
+<div>
+    <center>
+        <h2>Logowanie</h2>
+       @* info konto utworzone*@
+        @if (TempData["KontoUtworzone"] != null)
+        {
+            <div class="alert alert-success">
+                @TempData["KontoUtworzone"]
+            </div>
+        }
+
+        <form asp-action="Login" asp-controller="Uzytkownik">
+            <!-- Email input -->
+            <div class="form-outline mb-4">
+                <input type="text" asp-for="Login" class="form-control" placeholder="Login" />
+            </div>
+
+            <!-- Password input -->
+            <div class="form-outline mb-4">
+                <input type="password" asp-for="Haslo" class="form-control" placeholder="Hasło" />
+            </div>
+
+            @if (@Model != null && @Model.Blad != null)
+            {
+                <h5 style="color: red;">@Model.Blad</h5>
+            }
+
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-primary btn-block mb-4">Zaloguj się</button>
+
+            <!-- Register buttons -->
+            <div class="text-center">
+                <p>Nie masz konta? <a asp-action="Rejestracja" asp-controller="Uzytkownik">Zarejestruj się</a></p>
+            </div>
+        </form>
+    </center>
+</div>
